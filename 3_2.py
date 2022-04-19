@@ -13,11 +13,8 @@ def num_translate( eng):
     'nine': 'девять',
     'ten': 'десять'
   }
-  try:
-    rus = dict_num[eng]
-  except KeyError:
-    rus = 'None'
-  return(rus)
+  return(dict_num.get(eng))
+
 
 def num_translate_adv( eng):
   dict_num = {
@@ -32,14 +29,13 @@ def num_translate_adv( eng):
     'nine': 'девять',
     'ten': 'десять'
   }
-  try:
-    rus = dict_num[eng]
-  except KeyError:
-    try:
-      rus = dict_num[eng[0].lower()+eng[1:]].capitalize()
-    except KeyError:
-      rus = 'None'
+  rus = dict_num.get(eng)
+  if rus is None:
+    rus = dict_num.get(eng[0].lower()+eng[1:])
+    if rus is not None:
+      rus =rus.capitalize()
   return(rus)
+
 
 eng = input("введите число 1-10 по-английски: ")
 print('по-русски: ',num_translate( eng))

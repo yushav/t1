@@ -13,11 +13,8 @@ def num_translate( eng):
     'nine': 'девять',
     'ten': 'десять'
   }
-  try:
-    rus = dict_num[eng]
-  except KeyError:
-    rus = 'None'
-  return(rus)
+  return(dict_num.get(eng))
+ 
 
 eng = input("введите число 1-10 по-английски: ")
 print('по-русски: ',num_translate( eng))
