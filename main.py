@@ -12,9 +12,10 @@ tmp = set()
 for i_ in src:
   if i_ not in tmp:
     set_unique.add(i_)
+    tmp.add(i_)
   else:
     set_unique.discard(i_)
-  tmp.add(i_)
+
 
 lst_unique = [i for i in src if i in set_unique]
 end = perf_counter()
@@ -22,4 +23,4 @@ print(lst_unique, end - start)
 #5_53 35.56636882800376
 #5_52 7.430894619996252
 #5_51 1.4
-#5_54 0.06
+#5_54 0.06  0.05
