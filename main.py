@@ -1,26 +1,62 @@
-#5_5_4
-import random
-from time import perf_counter
+#9_4
+class Car:
+    def __init__(self,speed, color, name, is_police):
+      self.speed = speed
+      self.color = color
+      self.name = name
+      self.is_police = is_police
 
-#src = [2, 2, 2, 7, 23, 1, 44, 44, 3, 2, 10, 7, 4, 11]
-src = [random.randrange(1,1000) for i in range(10000)]
+    def show_speed(self):
+      return self.speed
+  
+    def move__(self, speed):
+      self.speed = speed
+      return self.speed
+        
+    def go(self, speed):
+      print(f'машина поехала, скорость {move__(self, speed)} км/ч')
+        
+    def stop(self):
+      move__(self, 0)
+      print(f'машина остановилась')
+        
+    def turn(self, direction):
+      print(f'машина повернула, направление: {direction}')
 
-start = perf_counter()
-set_unique = set()
-tmp = set()
 
-for i_ in src:
-  if i_ not in tmp:
-    set_unique.add(i_)
-    tmp.add(i_)
-  else:
-    set_unique.discard(i_)
+class TownCar(Car):
+    def __init__(self,speed, color, name, is_police):
+      super().__init__(self,speed, color, name, 0)
+  
+    def show_speed(self):
+      if self.speed > 60:
+        print('Превышена разрешенная скорость движения 60 км/ч!')
+      return self.speed
+
+    
+class SportCar(Car):
+    def __init__(self, speed, color, name, is_police):
+      super().__init__(self,speed, color, name, 0)
+
+    
+class WorkCar(Car):
+    def __init__(self, speed, color, name, is_police):
+      super().__init__(self,speed, color, name, 0)
+
+    def show_speed(self):
+      if self.speed > 40:
+        print('Превышена разрешенная скорость движения 40 км/ч!')
+      return self.speed
+
+    
+class PoliceCar(Car):
+    def __init__(self, speed, color, name, is_police):
+      super().__init__(self,speed, color, name, 1)
 
 
-lst_unique = [i for i in src if i in set_unique]
-end = perf_counter()
-print(lst_unique, end - start)
-#5_53 35.56636882800376
-#5_52 7.430894619996252
-#5_51 1.4
-#5_54 0.06  0.05
+car_police = PoliceCar(80, 'белый', 'Ford', 1)
+car_work = WorkCar(60, 'оранжевый', 'Камаз', 0)
+car_town = TownCar(79, 'желтый', 'volkswagen beetle', 0)
+car_sport = SportCar(200, 'красный', 'Ferrari', 0)
+
+car_work.show_speed()
